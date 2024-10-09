@@ -121,11 +121,6 @@ extra_javascript:
 nav:
   - 主页 :
       - Getting-Start : index.md
-  - 化工基本观点 :
-      - 概述 : hgjbgd/index.md
-      - 推动力阻力 : hgjbgd/1.md
-  - 博客搭建模版 :
-      - 概述 : bkdjmb/index.md
 
 plugins:
   - search:
