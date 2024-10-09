@@ -1,9 +1,9 @@
-site_name: CET
+site_name: INFO
 
 
 # Repository
-repo_name: chem
-repo_url: https://github.com/hhlans/BLOG
+repo_name: INFO
+repo_url: https://github.com/hhlans/INFO
 
 
 theme:
