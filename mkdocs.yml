@@ -122,6 +122,11 @@ nav:
   - 主页 :
       - Getting-Start : index.md
 
+
+extra:
+  generator: false
+
+
 plugins:
   - search:
       lang: en
