@@ -121,6 +121,9 @@ extra_javascript:
 nav:
   - 主页 :
       - Getting-Start : index.md
+  - 化工原理考研:
+      - Getting-Start : 1/index.md
+      - 1 流体流动: 1/1/1 流体流动.md
 
 
 extra:
