@@ -5,6 +5,7 @@ site_name: INFO
 repo_name: INFO
 repo_url: https://github.com/hhlans/INFO
 
+copyright: 联系作者 hhlanswer@gmai.com
 
 theme:
   name: material
@@ -138,8 +139,7 @@ nav:
       - 14 固体干燥: 1/1/14 固体干燥.md
 
 
-extra:
-  footer: 
+
 
 
 plugins:
