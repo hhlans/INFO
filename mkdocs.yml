@@ -139,8 +139,7 @@ nav:
 
 
 extra:
-  generator: false
-  footer: 联系作者:hhlanswer@gmail.com
+  footer: 
 
 
 plugins:
