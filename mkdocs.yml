@@ -5,7 +5,7 @@ site_name: INFO
 repo_name: INFO
 repo_url: https://github.com/hhlans/INFO
 
-copyright: 联系作者 hhlanswer@gmai.com
+copyright: 联系作者 hhlanswer@gmail.com
 
 theme:
   name: material
@@ -126,7 +126,7 @@ nav:
   - 化工原理考研:
       - Getting-Start : 1/index.md
       - 简答题:
-        - Getting-Start:1/1/index.md
+        - Getting-Start: 1/1/index.md
         - 1 流体流动: 1/1/1 流体流动.md
         - 2 流体输送机械: 1/1/2 流体输送机械.md
         - 3 液体的搅拌: 1/1/3 液体的搅拌.md
