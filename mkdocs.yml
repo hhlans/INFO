@@ -121,8 +121,7 @@ extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
   - '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
 nav:
-  - 主页 :
-      - Getting-Start : index.md
+  - Getting-Start : index.md
   - 化工原理考研:
       - Getting-Start : 1/index.md
       - 简答题:
