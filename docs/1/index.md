@@ -1,4 +1,4 @@
-介绍化工原理考研部分内容。[^ref1]
+介绍华东理工大学化工原理801考研部分内容。[^ref1]
 
 [项目github地址](https://github.com/hhlans/INFO)，基于markdown语法，建议使用Obsidian查看。
 
