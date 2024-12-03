@@ -55,6 +55,10 @@ theme:
     #- search.share
     - search.suggest
     #- toc.follow
+    - font:
+      text: 'Fira Sans'
+      code: 'Fira Mono'
+      font-size: 18
     - icon:
         admonition:
           note: octicons/tag-16
