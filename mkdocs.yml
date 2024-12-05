@@ -113,7 +113,9 @@ extra_javascript:
   - '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
 nav:
   - Getting-Start : index.md
-  - 化工原理考研:
+  - TMP :
+    - 华理化工原理课程设计:  2/华理化工原理课程设计.md
+    - 化工原理考研:
       - Getting-Start : 1/index.md
       - 简答题:
         - Getting-Start: 1/1/index.md
@@ -133,8 +135,6 @@ nav:
       - 计算题: 
         - Getting-Start: 1/3/index.md
         - 计算题: 1/3/计算题.md
-  - TMP :
-    - 华理化工原理课程设计:  2/华理化工原理课程设计.md
 
 
 
