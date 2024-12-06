@@ -90,6 +90,11 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.mark
   - pymdownx.smartsymbols
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
   - pymdownx.snippets:
       auto_append:
         - includes/mkdocs.md
@@ -140,6 +145,8 @@ nav:
       - 第二章 误差分析: 分析化学/2.md
       - 第三章 滴定分析: 分析化学/3.md
       - 第四章 酸碱滴定: 分析化学/4.md
+    - 神经网络: tmp/net.md
+    - 样式: style.md
 
 
 
