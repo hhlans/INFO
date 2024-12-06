@@ -119,6 +119,7 @@ extra_javascript:
 nav:
   - Getting-Start : index.md
   - TMP :
+    - Getting-Start: tmp/index.md
     - 化工原理考研:
       - Getting-Start : 1/index.md
       - 简答题:
