@@ -1,3 +1,322 @@
+## 源码
+
+运行代码会在目录下生成图片和README文件。
+
+??? success 
+    ``` MATLAB linenums="1"
+    clear, close all;
+    global fp;
+    fp = fo();
+    %**********************************************************
+    %**********************************************************
+    %**********************************************************读取数据
+    %*********************************************管式
+    dt1_0 = readmatrix("1_0.csv");
+    u1_0 = 410.5223;
+    %u1_0 = min(min(dt1_0(:,3)), u1_0);
+
+    dt1_3 = readmatrix("1_3.csv");
+    u1_3 = min(min(dt1_3(:,3)), 471.8984);
+    %u1_3 =  471.8984;
+    dt1_5 = readmatrix("1_5.csv");
+    u1_5 = min(dt1_5(:, 3),456.6393);
+    u1_5 = 456.6393;
+    f1 = @(x,name)fwtb(fp, name, [x(1:end/2,:),x(end/2+1:end,:)], {'$i$';'$t/s$';['$\\sigma/(\\mu S/cm)$'];'$i$';'$t$';['$\\sigma/(\\mu S/cm)$']},3);
+    f1(dt1_0, '$\beta=0$ 单管停留时间分布');
+    f1(dt1_3, '$\beta=3$ 单管停留时间分布');
+    f1(dt1_5(2:end,:), '$\beta=5$ 单管停留时间分布');
+    %*********************************************釜式
+    dt2_1 = readmatrix("2_1.csv");
+    u2_1 = min(min(dt2_1(:,3)),394.2910);
+    u2_1 = 394.2910;
+    dt2_3 = readmatrix("2_3.csv");
+    u2_3 = [451.9091 432.4477 413.7340;min(dt2_3(:,3:5),[], 1)];
+    u2_3 = u2_3(1, :);
+
+    f1(dt2_1, '单釜停留时间分布');
+    fwtb(fp, '多釜串联停留时间分布', dt2_3, {'$i$';'$t/s$';['$\\sigma/(\\mu S/cm)$'];['$\\sigma/(\\mu S/cm)$'];['$\\sigma/(\\mu S/cm)$']},3)
+
+    %**********************************************************
+    %**********************************************************
+    %**********************************************************初绘图
+    %*********************************************
+    plot1(dt1_0(:, 2), dt1_0(:, 3), '\beta=0 单管停留时间分布','时间/s','浓度/(\mu S/cm)','fph', 'image1/');
+    plot1(dt1_3(:, 2), dt1_3(:, 3), '\beta=3 单管停留时间分布','时间/s','浓度/(\mu S/cm)','fph', 'image1/');
+    plot1(dt1_5(:, 2), dt1_5(:, 3), '\beta=5 单管停留时间分布','时间/s','浓度/(\mu S/cm)','fph', 'image1/');
+    plot1(dt2_1(:, 2), dt2_1(:, 3), '单釜停留时间分布','时间/s','浓度/(\mu S/cm)','fph', 'image1/');
+    plot1(dt2_3(:, 2), dt2_3(:, 3:5), '多釜串联停留时间分布','时间/s','浓度/(\mu S/cm)','leng',{'釜1', '釜2', '釜3'},'fph', 'image1/');
+    %*********************************************釜式
+    plot1(dt1_0(:, 2), dt1_0(:, 3)-u1_0, '\beta=0 单管停留时间分布(去基准)','时间/s','浓度/(\mu S/cm)','fph', 'image2/');
+    plot1(dt1_3(:, 2), dt1_3(:, 3)-u1_3, '\beta=3 单管停留时间分布(去基准)','时间/s','浓度/(\mu S/cm)','fph', 'image2/');
+    plot1(dt1_5(:, 2), dt1_5(:, 3)-u1_5, '\beta=5 单管停留时间分布(去基准)','时间/s','浓度/(\mu S/cm)','fph', 'image2/');
+    plot1(dt2_1(:, 2), dt2_1(:, 3)-u2_1, '单釜停留时间分布(去基准)','时间/s','浓度/(\mu S/cm)','fph', 'image2/');
+    plot1(dt2_3(:, 2), dt2_3(:, 3:5)-ones(size(dt2_3, 1),1)*u2_3, '多釜串联停留时间分布(去基准)','时间/s','浓度/(\mu S/cm)','leng',{'釜1', '釜2', '釜3'},'fph', 'image2/');
+
+    %**********************************************************
+    %**********************************************************
+    %**********************************************************数值计算
+    rets = ones(7, 14);
+    rets(1,:) = inter(dt1_0(:, 2), dt1_0(:, 3)-u1_0);
+    rets(2,:) = inter(dt1_3(:, 2), dt1_3(:, 3)-u1_3);
+    rets(3,:) = inter(dt1_5(:, 2), dt1_5(:, 3)-u1_5);
+    rets(4,:) = inter(dt2_1(:, 2), dt2_1(:, 3)-u2_1);
+    rets(5,:) = inter(dt2_3(:, 2), dt2_3(:, 3)-u2_3(1));
+    rets(6,:) = inter(dt2_3(:, 2), dt2_3(:, 4)-u2_3(2));
+    rets(7,:) = inter(dt2_3(:, 2), dt2_3(:, 5)-u2_3(3));
+    fwtb(fp, '一阶差分', rets(:, 1:end/2), {'$\\int L(t)dt$';'$\\int tL(t)dt$';'$t$';'$\\frac{\\int tL(t)}{\\int L(t)dt}$';'$\\int t^2L(t)dt$';'$\\sigma^2$';'$N$'},4);
+    fwtb(fp, 'quadl', rets(:, end/2+1:end), {'$\\int L(t)dt$';'$\\int tL(t)dt$';'$t$';'$\\frac{\\int tL(t)}{\\int L(t)dt}$';'$\\int t^2L(t)dt$';'$\\sigma^2$';'$N$'},4);
+
+    %********************************************************%********************************************************函数区
+    %**********************************************************
+    %**********************************************************
+    %**********************************************************数值积分
+    function ret = inter(x, y)
+        %一阶差分
+        if size(x, 1)==1
+            x = x';
+        end
+        if size(y, 1)==1
+            y = y';
+        end
+        in2 = trapz(x, y);%ct
+        in2t = trapz(x, y.*x);%tct
+        in2t_ = in2t/in2;
+        sig2 = trapz(x, y.*x.*x)/in2;
+        sig2_ = sig2-in2t_*in2t_;
+        tth2 = (sig2_)/(in2t_^2);
+
+        pp = pchip(x, y);
+        pv = @(px)ppval(pp, px);
+        pvt = @(px)ppval(pp, px).*px;
+        pvt2 = @(px)ppval(pp, px).*px.*px;
+
+        in3 = quadl(pv, 0, max(x));%lt
+        in3t = quadl(pvt, 0, max(x));%tlt
+        in3t_ = in3t/in3;%t_
+        sig3 = quadl(pvt2, 0, max(x))/in3;%t2lt
+        sig3_ = sig3-in3t_*in3t_;%sigma
+        tth3 = (sig3_)/(in3t_^2);
+        ret = [in2, in2t,in2t_,sig2,sig2_, tth2, 1/tth2,in3,in3t,in3t_,sig3,sig3_,tth3,1/tth3];
+    end
+
+
+    %**********************************************************
+    %**********************************************************
+    %**********************************************************折线图绘制函数
+    function plot1(x, y, name, xname, yname, varargin)
+        ipa = inputParser;
+        addParameter(ipa, 'leng', 0);
+        addParameter(ipa, 'fph', 0);
+        parse(ipa, varargin{:});
+        leng = ipa.Results.leng;
+        fph = ipa.Results.fph;
+        p = figure('visible','off','Position', [0, 0, 1000, 500]);
+        cm = [0.017,0.198,1;1,0.149,0;1, 0.1, 1;];%颜色rgb
+        mark = ['^','s','d'];%scatter标记
+        h_plot = [];
+        h_scatter = [];
+        paym=0;
+        for i=1:size(y, 2)
+            inter = (max(x)-min(x))/500;
+            px1 = 0:inter:max(x)+10*inter;
+            py1 = pchip(x, y(:,i), px1);
+            h_plot(i)  = plot(px1, py1, 'linewidth',1.2,'color', cm(i, :));
+            hold on;
+            h_scatter(i) = scatter(x, y(:,i), 50,cm(i, :), mark(i), 'filled');
+            h_legend(i) = plot(NaN, NaN, 'linewidth', 1.2, 'color', cm(i, :), ...
+                    'Marker', mark(mod(i-1, length(mark)) + 1), 'MarkerSize', 6, ...
+                    'MarkerFaceColor', cm(i, :));
+            hold on;
+            paym = max(max(py1), paym);
+        end
+        if  ~ismember('leng', ipa.UsingDefaults)
+            lgd = legend(h_legend, leng, 'position', [0.75 0.75,0.1,0.1],'fontsize', 17,'box', 'off');
+            lgd.ItemTokenSize = [60, 10];
+        end
+        intex = (max(x)-min(x))/20;
+        intey = (paym-0)/10;
+        %xlim([min(x)-intex,max(x)+intex])
+        xlim([0,max(x)+intex])
+        %ylim([min(min(y))-intey,max(max(y))+intey])
+        ylim([-20,paym+intey])
+        xticks(0:200:max(x))
+        figFont3(p,name,xname,yname)
+        if  ~ismember('fph', ipa.UsingDefaults)
+            saveas(p, [fph ,name, '.svg']);
+        end
+    end
+
+    function figFont3(fig, titlename, xname, yname)
+        title(titlename ,'fontsize', 20)
+        xlabel(xname,'fontsize', 18);
+        ylabel(yname,'fontsize', 18);
+        box on;
+        set(gca, 'LineWidth', 1.4);
+        allTextObjects = findall(fig, 'Type', 'text');
+        for i = 1:length(allTextObjects)
+            textObj = allTextObjects(i);
+            originalString = textObj.String;
+            modifiedString = stringChg(originalString);
+            textObj.String = modifiedString;
+        end
+        allAxes = findall(fig, 'Type', 'axes');
+        for i = 1:length(allAxes)
+            ax = allAxes(i);
+            if ~isempty(ax.XTickLabel)
+                ax.XTickLabel = cellfun(@stringChg, ax.XTickLabel, 'UniformOutput', false);
+            end
+            if ~isempty(ax.YTickLabel)
+                ax.YTickLabel = cellfun(@stringChg, ax.YTickLabel, 'UniformOutput', false);
+            end
+            if ~isempty(ax.ZTickLabel)
+                ax.ZTickLabel = cellfun(@stringChg, ax.ZTickLabel, 'UniformOutput', false);
+            end
+        end
+        allPolarAxes = findall(fig, 'Type', 'polaraxes');
+        for i = 1:length(allPolarAxes)
+            disp('Oreo');
+            ax = allPolarAxes(i);
+            if ~isempty(ax.RTickLabel)
+                ax.RTickLabel = cellfun(@stringChg, ax.RTickLabel, 'UniformOutput', false);
+            end
+            if ~isempty(ax.ThetaTickLabel)
+                ax.ThetaTickLabel = cellfun(@stringChg, ax.ThetaTickLabel, 'UniformOutput', false);
+            end
+        end
+        allLegend=findall(fig,'Type','Legend');
+        for i=1:length(allLegend)
+            lg=allLegend(i);
+            if ~isempty(lg.String)
+                lg.String = cellfun(@stringChg,lg.String, 'UniformOutput', false);
+            end
+        end
+
+    end
+
+    function modifiedString = stringChg(textCont_String)
+        if strcmp(textCont_String,char);modifiedString=char;else
+            chiFontname = 'Songti SC';
+            engFontname = 'Times New Roman';
+            result = splitChinese(textCont_String);
+            result.Data(result.flag == 1) = strcat(['\fontname{', chiFontname, '}'], result.Data(result.flag == 1));
+            result.Data(result.flag == 0) = strcat(['\fontname{', engFontname, '}'], result.Data(result.flag == 0));
+            modifiedString = [result.Data{:}];
+        end
+    end
+
+    function result = splitChinese(label)
+        label = char(label);
+        log = arrayfun(@(x) (x >= '一' && x <= '龥') || ...
+            (x >= 8212 && x <= 8230) || ...
+            (x >= 12290 && x <= 12305) || ...
+            (x >= 65281 && x <= 65311), label);
+        Indxs = find(diff(log) ~= 0);
+        result.Data = arrayfun(@(x, y) extractBetween(label, x, y), [0, Indxs]' + 1, [Indxs, length(label)]');
+        result.flag = [log(Indxs), log(end)];
+    end
+
+    %**********************************************************
+    %**********************************************************
+    %**********************************************************文件读写
+    function fw(file, title, data)
+        fprintf(file, "### %s\n", title);
+        for i=1:size(data, 1)
+            fprintf(file, "    ");
+            for j=1:size(data, 2)
+                if data(i, j)>=0
+                    fprintf(file, " ");
+                end
+                fprintf(file, "%.4f ", data(i, j));
+            end
+            fprintf(file, "\n");
+        end
+        fprintf(file, "\n");
+    end
+
+    function fw_(file, title, data)
+        fprintf(file, "### %s\n", title);
+        for i=1:size(data, 1)
+            fprintf(file, "    ");
+            for j=1:size(data, 2)
+                if data(i, j)>=0
+                    fprintf(file, " ");
+                end
+                fprintf(file, "%.4e ", data(i, j));
+            end
+            fprintf(file, "\n");
+        end
+        fprintf(file, "\n");
+    end
+
+    function fwtb_(file, title, data, head, ni)
+        for i=1:ni
+            fprintf(file, '#');
+        end
+        fprintf(file, " %s\n|", title);
+        for i=1:size(head, 1)
+            fprintf(file, [head(i, :),'|']);
+        end
+        fprintf(file, '\n|');
+        for i=1:size(head, 1)
+            fprintf(file, '-|');
+        end
+        fprintf(file, '\n');
+        for i=1:size(data, 1)
+            fprintf(file, "|");
+            for j=1:size(data, 2)
+                if data(i, j)>=0
+                    fprintf(file, "");
+                end
+                fprintf(file, "%.4e|", data(i, j));
+            end
+            fprintf(file, "\n");
+        end
+        fprintf(file, "\n");
+    end
+
+    function fwtb(file, title, data, head, ni)
+        for i=1:ni
+            fprintf(file, '#');
+        end
+        fprintf(file, " %s\n|", title);
+        for i=1:size(head, 1)
+            str = strjoin(head(i));
+            fprintf(file, [str,'|']);
+        end
+        fprintf(file, '\n|');
+        for i=1:size(head, 1)
+            fprintf(file, '-|');
+        end
+        fprintf(file, '\n');
+        for i=1:size(data, 1)
+            fprintf(file, "|");
+            for j=1:size(data, 2)
+                if data(i, j)>=0
+                    fprintf(file, "");
+                end
+                fprintf(file, "%.4f|", data(i, j));
+            end
+            fprintf(file, "\n");
+        end
+        fprintf(file, "\n");
+    end
+
+    function fwt(file, text)
+        fprintf(file, text);
+        fprintf(file, "\n");
+    end
+
+    function file = fo()
+        file = fopen("README/README.md", 'w+');
+    end
+    ```
+
+
+
+
+
+
+
 ## 图片
 ![](image1/beta=0%20单管停留时间分布.svg)
 ![](image1/beta=3%20单管停留时间分布.svg)
@@ -9,7 +328,7 @@
 ![](image2/beta=5%20单管停留时间分布(去基准).svg)
 ![](image2/单釜停留时间分布(去基准).svg)
 ![](image2/多釜串联停留时间分布(去基准).svg)
-## 处理结果
+
 ### $\beta=0$ 单管停留时间分布
 |$i$|$t/s$|$\sigma/(\mu S/cm)$|$i$|$t$|$\sigma/(\mu S/cm)$|
 |-|-|-|-|-|-|
@@ -122,25 +441,24 @@
 |29.0000|1399.0000|454.4700|433.7800|420.2700|
 |30.0000|1472.0000|453.1900|433.7800|418.1300|
 
-#### 停留时间
-|$\iint L(t)dt$|$\iint tL(t)dt$|$t$|$\frac{\iint tL(t)}{\iint L(t)dt}$|$\iint t^2L(t)dt$|$\sigma^2$|$t_{\theta}$|
+#### 一阶差分
+|$\int L(t)dt$|$\int tL(t)dt$|$t$|$\frac{\int tL(t)}{\int L(t)dt}$|$\int t^2L(t)dt$|$\sigma^2$|$N$|
 |-|-|-|-|-|-|-|
 |23301.5172|3502057.3951|150.2931|23497.4546|909.4369|0.0403|24.8374|
 |43693.8411|8447021.0259|193.3229|58382.2609|21008.5087|0.5621|1.7790|
-|41203.2723|9361246.8593|227.1967|80112.6885|28494.3549|0.5520|1.8115|
+|41277.9807|9362143.3601|226.8072|79967.9544|28526.4468|0.5545|1.8033|
 |122170.7109|69832544.4499|571.5981|528038.1625|201313.7909|0.6162|1.6230|
 |142936.1162|28084201.5378|196.4808|79968.4049|41363.7027|1.0715|0.9333|
 |131030.9614|49096935.2066|374.6972|201535.7612|61137.7646|0.4355|2.2964|
-|115878.5260|63535823.2100|548.2968|378485.1398|77855.7758|0.2590|3.8614|
+|115872.6380|63531489.6420|548.2872|378467.6351|77848.7304|0.2590|3.8616|
 
-#### 停留时间
-|$\iint L(t)dt$|$\iint tL(t)dt$|$t$|$\frac{\iint tL(t)}{\iint L(t)dt}$|$\iint t^2L(t)dt$|$\sigma^2$|$t_{\theta}$|
+#### quadl
+|$\int L(t)dt$|$\int tL(t)dt$|$t$|$\frac{\int tL(t)}{\int L(t)dt}$|$\int t^2L(t)dt$|$\sigma^2$|$N$|
 |-|-|-|-|-|-|-|
 |23314.6638|3498199.0748|150.0429|23471.1629|958.3000|0.0426|23.4925|
 |43850.9688|8456124.7329|192.8378|58286.9127|21100.4922|0.5674|1.7623|
-|41479.9410|9377810.8862|226.0806|79748.6493|28636.2014|0.5603|1.7849|
+|41286.5548|9377362.9776|227.1287|80122.2117|28534.7493|0.5531|1.8079|
 |128217.9476|69951076.9810|545.5638|503191.8270|205551.9138|0.6906|1.4480|
 |143291.1523|28092902.1151|196.0547|79976.0069|41538.5664|1.0807|0.9253|
 |130915.7227|49111383.6391|375.1374|201987.8872|61259.8195|0.4353|2.2972|
-|115938.6613|63635538.6617|548.8725|378896.3597|77635.3785|0.2577|3.8805|
-
+|115932.7733|63631205.0937|548.8630|378878.9209|77628.3723|0.2577|3.8807|
