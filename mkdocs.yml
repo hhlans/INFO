@@ -2,7 +2,7 @@ site_name: INFO
 
 
 # Repository
-repo_name: INFO
+repo_name: hhlans/INFO
 repo_url: https://github.com/hhlans/INFO
 
 copyright: 联系作者 hhlanswer@gmail.com
@@ -32,10 +32,10 @@ theme:
   features:
     #- announce.dismiss
     #- content.action.view
-    #- content.code.annotate
-    #- content.code.copy
-    # - content.code.select
-    # - content.footnote.tooltips
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+    - content.footnote.tooltips
     - content.tabs.link
     #- content.tooltips
     # - header.autohide
