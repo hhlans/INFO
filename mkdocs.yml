@@ -118,7 +118,9 @@ extra_javascript:
   - '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
 nav:
   - Getting-Start : index.md
+  - 实验: READ.md
   - TMP :
+    
     - Getting-Start: tmp/index.md
     - 化工原理考研:
       - Getting-Start : 1/index.md
