@@ -6,9 +6,7 @@
 
 [github仓库地址](https://github.com/hhlans/INFO)
 
-<video width="640" height="360" controls>
-  <source src="Juven.mp4" type="video/mp4">
-</video>
+
 
 
 

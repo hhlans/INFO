@@ -122,7 +122,8 @@ nav:
     - Getting-Start: coding/index.md
     - Python:
       - Getting-Start: coding/python/index.md
-      - Python: coding/python/1.md
+      - Python基础: coding/python/1.md
+      - Numpy(代数运算): coding/python/2.md
   - TMP :
     
     - Getting-Start: tmp/index.md
