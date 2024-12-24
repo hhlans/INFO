@@ -124,8 +124,15 @@ nav:
       - Getting-Start: coding/python/index.md
       - Python基础: coding/python/1.md
       - Numpy(代数运算): coding/python/2.md
+      - Pandas: coding/python/3.md
+      - 面向对象基础: coding/python/4.md
+      - 绘图: coding/python/6.md
+      - 进度条: coding/python/5.md
+  - Deep Learning:
+    - Getting-Start: DL/index.md
+  - PDE:
+    - Getting-Start: PDE/index.md
   - TMP :
-    
     - Getting-Start: tmp/index.md
     - 化工原理考研:
       - Getting-Start : tmp/1/index.md
