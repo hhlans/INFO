@@ -9,7 +9,7 @@
 
 ## 代码
 
-```matlab title="MATLAB" hl_lines="2 3"
+```matlab title="MATLAB" hl_lines="1 2"
     Millions of engineers and scientists worldwide use MATLAB® to analyze and design the systems and products transforming our world. The matrix-based MATLAB language is the world’s most natural way to express computational mathematics. Built-in graphics make it easy to visualize and gain insights from data. The desktop environment invites experimentation, exploration, and discovery. These MATLAB tools and capabilities are all rigorously tested and designed to work together.
     clear
     clean
