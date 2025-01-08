@@ -5,7 +5,7 @@ site_name: INFO
 repo_name: hhlans/INFO
 repo_url: https://github.com/hhlans/INFO
 
-copyright: 联系作者 hhlanswer@gmail.com
+copyright: 联系作者 ![](hhlanswer@gmail.com)
 
 theme:
   name: material
@@ -134,6 +134,9 @@ nav:
     - Getting-Start: DL/index.md
   - PDE:
     - Getting-Start: PDE/index.md
+    - 有限元法:
+      - Getting-Start: PDE/FEM/index.md
+      - 泛函与变分: PDE/FEM/FAVM.md
   - TMP :
     - Getting-Start: tmp/index.md
     - 化工原理考研:
