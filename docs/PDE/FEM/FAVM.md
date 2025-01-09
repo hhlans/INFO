@@ -35,6 +35,11 @@ $$H(X_0)=\left[
 \right]
 $$
 
+### 格林定理（Green's Theorem）
+
+### 高斯定理（Gauss's Theorem 或 Divergence Theorem）
+
+
 ## 泛函与变分基础
 设函数集 $\{y(x)\}$，对集合中的任一一个函数恒有某个确定的值 $\Pi\big[y(x)\big]$ 与之对应，则称$\Pi\big[y(x)\big]$ 是定义在集合 $\{y(x)\}$ 的一个泛函。
 
@@ -92,5 +97,5 @@ $$\begin{aligned}\delta J=&\varepsilon\int_a^b\frac{\partial F}{\partial y} \eta
 
 $$\frac{\partial F}{\partial y}-\frac{d}{dx}\bigg[\frac{\partial F}{\partial y'}\bigg]=0$$
 
-
+## 含高阶导数的泛函极值问题
 

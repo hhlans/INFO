@@ -793,7 +793,7 @@
             
   
   <span class="md-ellipsis">
-    有限元法
+    有限元分析
   </span>
   
 
@@ -803,7 +803,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_2">
             <span class="md-nav__icon md-icon"></span>
-            有限元法
+            有限元分析
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -895,6 +895,24 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#greens-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      格林定理（Green's Theorem）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gausss-theorem-divergence-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      高斯定理（Gauss's Theorem 或 Divergence Theorem）
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -939,6 +957,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      含高阶导数的泛函极值问题
+    </span>
+  </a>
   
 </li>
       
@@ -1784,6 +1811,24 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#greens-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      格林定理（Green's Theorem）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gausss-theorem-divergence-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      高斯定理（Gauss's Theorem 或 Divergence Theorem）
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1828,6 +1873,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      含高阶导数的泛函极值问题
+    </span>
+  </a>
   
 </li>
       
@@ -1876,6 +1930,8 @@
 \end{matrix} 
 \right]
 \]</div>
+<h3 id="greens-theorem">格林定理（Green's Theorem）<a class="headerlink" href="#greens-theorem" title="Permanent link">&para;</a></h3>
+<h3 id="gausss-theorem-divergence-theorem">高斯定理（Gauss's Theorem 或 Divergence Theorem）<a class="headerlink" href="#gausss-theorem-divergence-theorem" title="Permanent link">&para;</a></h3>
 <h2 id="_3">泛函与变分基础<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>设函数集 <span class="arithmatex">\(\{y(x)\}\)</span>，对集合中的任一一个函数恒有某个确定的值 <span class="arithmatex">\(\Pi\big[y(x)\big]\)</span> 与之对应，则称<span class="arithmatex">\(\Pi\big[y(x)\big]\)</span> 是定义在集合 <span class="arithmatex">\(\{y(x)\}\)</span> 的一个泛函。</p>
 <p>例如：</p>
@@ -1886,7 +1942,7 @@
 <div class="arithmatex">\[\delta\Pi\big[y(x)\big]=\Pi\big[y(x)+\delta y(x)\big]-\Pi\big[y(x)\big]\]</div>
 <h2 id="-">简单泛函极值问题-泛函的欧拉方程<a class="headerlink" href="#-" title="Permanent link">&para;</a></h2>
 <h3 id="-_1">泛函的欧拉-拉格朗日方程<a class="headerlink" href="#-_1" title="Permanent link">&para;</a></h3>
-<div class="arithmatex">\[\frac{\partial F}{\partial y}-\frac{d}{dx}\big(\frac{\partial F}{\partial y'}\big)=0\]</div>
+<div class="arithmatex">\[\frac{\partial F}{\partial y}-\frac{d}{dx}\bigg[\frac{\partial F}{\partial y'}\bigg]=0\]</div>
 <h3 id="_4">推导过程<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>泛函</p>
 <div class="arithmatex">\[J[y]=\int_a^bF\big(x,y,y')dx\]</div>
@@ -1905,7 +1961,8 @@
 <p>用变分表示</p>
 <div class="arithmatex">\[\begin{aligned}\delta J=&amp;\varepsilon\int_a^b\frac{\partial F}{\partial y} \eta-\frac{d}{dx}\bigg[\frac{\partial F}{\partial y'}  \bigg]\eta dx\\=&amp;\varepsilon\int_a^b \Bigg[\frac{\partial F}{\partial y}-\frac{d}{dx}\bigg[\frac{\partial F}{\partial y'} \bigg] \Bigg]\eta dx\end{aligned}\]</div>
 <p>得到泛函的欧拉-拉格朗日方程</p>
-<div class="arithmatex">\[\frac{\partial F}{\partial y}-\frac{d}{dx}\big(\frac{\partial F}{\partial y'}\big)=0\]</div>
+<div class="arithmatex">\[\frac{\partial F}{\partial y}-\frac{d}{dx}\bigg[\frac{\partial F}{\partial y'}\bigg]=0\]</div>
+<h2 id="_5">含高阶导数的泛函极值问题<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 
 
 
