@@ -5,7 +5,7 @@ site_name: INFO
 repo_name: hhlans/INFO
 repo_url: https://github.com/hhlans/INFO
 
-copyright: 联系作者 ![](hhlanswer@gmail.com)
+copyright: 联系作者 hhlanswer@gmail.com
 
 theme:
   name: material
