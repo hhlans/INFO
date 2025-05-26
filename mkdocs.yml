@@ -134,6 +134,9 @@ nav:
     - 有限元分析:
       - Getting-Start: PDE/FEM/index.md
       - 泛函与变分: PDE/FEM/FAVM.md
+  - Deep Learning:
+    - Getting-Start: DL/index.md
+    - Gradient Descend: DL/gd.md
   - TMP :
     - Getting-Start: tmp/index.md
     - 化工原理考研:
