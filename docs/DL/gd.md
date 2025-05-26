@@ -1,9 +1,7 @@
 
 # Gradient Descend
 
-## Fundamentals of Eigenvalue Theory for Real Symmetric Matrix
-
-
+## Eigenvalue Theory 
 Let $A(A\in \mathbb{R}^{n\times n})$ be a square matrix, a scalar $\lambda (\lambda\in\mathbb{R})$ is called an *eigenvalue* of $A$ if there exists a non-zero vector $\mathbf{v}(\mathbf{v}\in\mathbb{R}^{n})$ such that 
 
 $$A\mathbf{v}=\lambda\mathbf{v}$$
