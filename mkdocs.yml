@@ -120,15 +120,6 @@ extra_javascript:
   - '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
 nav:
   - Getting-Start : index.md
-  - CODING:
-    - Getting-Start: coding/index.md
-    - Python:
-      - Getting-Start: coding/python/index.md
-      - Python基础: coding/python/1.md
-      - Numpy(代数运算): coding/python/2.md
-      - 面向对象基础: coding/python/4.md
-      - 绘图: coding/python/6.md
-      - 进度条: coding/python/5.md
   - PDE:
     - Getting-Start: PDE/index.md
     - 有限体积法 :
@@ -184,6 +175,15 @@ nav:
     - 神经网络: tmp/net.md
     - 反应器返混实验: tmp/READ.md
     - 样式: tmp/style.md
+    - CODING:
+      - Getting-Start: coding/index.md
+      - Python:
+        - Getting-Start: coding/python/index.md
+        - Python基础: coding/python/1.md
+        - Numpy(代数运算): coding/python/2.md
+        - 面向对象基础: coding/python/4.md
+        - 绘图: coding/python/6.md
+        - 进度条: coding/python/5.md
 
 
 
