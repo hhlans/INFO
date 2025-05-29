@@ -2,6 +2,7 @@
 # Gradient Descend
 
 ## Eigenvalue Theory 
+
 Let $A(A\in \mathbb{R}^{n\times n})$ be a square matrix, a scalar $\lambda (\lambda\in\mathbb{R})$ is called an *eigenvalue* of $A$ if there exists a non-zero vector $\mathbf{v}(\mathbf{v}\in\mathbb{R}^{n})$ such that 
 
 $$A\mathbf{v}=\lambda\mathbf{v}$$
@@ -60,7 +61,7 @@ $$\nabla E\mathbf{(\hat{w})}\simeq (\mathbf{w}-\mathbf{\hat{w}})+\mathbf{H}(\mat
 
 For the point $\mathbf{w}$ is sufficiently colsed to $\mathbf{\hat{w}}$, these experssions will give reasonable approximation for the error function and its gradient.
 
-Considering a particular case that of a quadratic approximation arroun a point $\mathbf{w^*}$ that is a minimum of the error function. In this case there is no linear term, because $\nabla E(\mathbf{w})=0$ at $\mathbf{w^*}$, and $(2-1)$ can simplified by
+Considering a particular case that of a quadratic approximation arroun a point $\mathbf{w^*}$ that is a minimum of the error function. In this case there is no linear term, because $\nabla E(\mathbf{w})=0$ at $\mathbf{w^*}$, and $(2-1)$ can be simplified by
 
 $$E(\mathbf{w})\simeq E(\mathbf{w^*})+\frac{1}{2}(\mathbf{w}-\mathbf{w^*})^\mathrm{T}\mathbf{H}(\mathbf{w}-\mathbf{w^*})\tag{2-5}$$
 
