@@ -145,6 +145,7 @@ nav:
     - Getting-Start: DL/index.md
     - Gradient Descend: DL/gd.md
     - RNN: DL/rnn.md
+    - Transform: DL/transform.md
   - TMP :
     - Getting-Start: tmp/index.md
     - 化工原理考研:
